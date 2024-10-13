@@ -29,3 +29,18 @@ jobs:
 
       - name: Build the React app
         run: npm run build
+      
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./build
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/netlify-action@v2.0.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          deploy-message: "Automated deployment from GitHub Actions"
+          publish-dir: ./build  # Directory where your React app is built
+
